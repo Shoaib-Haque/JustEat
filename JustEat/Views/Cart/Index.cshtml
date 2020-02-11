@@ -1,0 +1,79 @@
+﻿@model IEnumerable<JustEat.Models.Cart>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+<div id="middlediv">
+    <form method="post" action="~/CustomerOrder/PlaceOrder">
+        <input type="hidden" name="TotalAmmount" value="@TempData["totalammount"]" />
+        <input type="hidden" name="FinalAmmount" value="@TempData["finalammount"]" />
+        <input type="hidden" name="Discount" value="@TempData["discount"]" />
+        <input type="hidden" name="DeliveryFee" value="@TempData["deliveryfee"]" />
+        <input type="hidden" name="resid" value="@TempData["resid"]" />
+
+        <table class="table" border="1">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FoodName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalPrice)
+                </th>
+
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FoodName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                    </td>
+
+                    <td>
+                        @{var url = HttpContext.Current.Request.Url.AbsoluteUri;}
+                        @Html.ActionLink("+", "../Cart/Increment", new { id = item.Id, pid = item.FoodId, rid = item.RestaurentId, unitprice = item.UnitPrice, ur = url }, new { @class = "increment" }) |
+                        @Html.ActionLink("-", "../Cart/Decrement", new { id = item.Id, pid = item.FoodId, unitprice = item.UnitPrice, ur = url }, new { @class = "decrement" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id, pid = item.FoodId, quantity = item.Quantity, ur = url })
+                    </td>
+                </tr>
+            }
+        </table>
+        <table>
+            <tr>
+                <td>Total Ammount @TempData["totalammount"]</td>
+            </tr>           
+            <tr>
+                <td>Discount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @TempData["discount"] (@TempData["discountrate"]%)</td>
+            </tr>
+            <tr>
+                <td>DeliveryFee &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @TempData["deliveryfee"]</td>
+            </tr>
+            <tr>
+                <td>Final Ammount @TempData["finalammount"]</td>
+            </tr>
+        </table>
+        @if (Model.Count() > 0)
+        {
+            <input type="submit" value="Place Order" />
+        }
+    </form>
+</div>

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<JustEat.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/RestaurentLayout.cshtml";
+}
+
+<div id="middlediv">
+    <table class="table" border="1">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlacedTime)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveredTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinalAmmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            
+            <th>
+                Customer Name
+            </th>
+            <th>
+                DeliveryMan Name
+            </th>
+            
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlacedTime)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveredTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinalAmmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryMan.Name)
+                </td>
+                
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id, cid = item.CustomerId }) |
+                    
+                    @if (item.Status == "Picked")
+                    {
+                        @Html.ActionLink("OnProcess", "Onprocess", new { id = item.Id })
+                    }
+                    @if (item.Status == "OnProcess")
+                    {
+                        @Html.ActionLink("Ready", "Ready", new { id = item.Id })
+                    }
+                    @if (item.Status == "Looking For Rider" || item.Status == "Picked" || item.Status == "Onprocess" || item.Status == "Pending")
+                    {
+                        @Html.ActionLink("Cancel", "Cancel", new { id = item.Id })
+                    }
+                    @if (item.Status == "OnRide")
+                    {
+                        @Html.ActionLink("Delivered", "Delivered", new { id = item.Id })
+                    }
+                    
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,35 @@
+﻿@model JustEat.Models.Customer
+
+@{
+    ViewBag.Title = "AreaUpdate";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+
+<div id="middlediv">
+    <form action="~/CustomerUpdate/AreaUpdate" method="post">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <table>
+            <tr>
+                <td colspan="2" align="center">Update area</td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td>
+                    <select name="Areaid">
+                        @for (int i = 0; i <= (int)Session["countarea"]; i++)
+                        {
+                            <option value="@Session["id"+i.ToString()]">@Session["areaname" + i.ToString()]</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AreaId)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save" /></td>
+            </tr>
+
+        </table>
+    </form>
+
+</div>

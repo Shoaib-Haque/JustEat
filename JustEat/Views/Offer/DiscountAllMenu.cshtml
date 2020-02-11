@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "DiscountAllMenu";
+    Layout = "~/Views/Shared/RestaurentLayout.cshtml";
+}
+
+<div id="middlediv">
+    <h2>Are You Sure You Want To Offer FreeDelivery In All Menu?</h2>
+    <form action="~/Offer/AllowDiscountAllMenu" method="post">
+        Select Rate<input type="number" name="Rate">
+        <input type="submit" value="Allow" />
+    </form>
+</div>
+

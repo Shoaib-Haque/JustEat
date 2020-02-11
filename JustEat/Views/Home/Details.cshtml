@@ -1,0 +1,53 @@
+﻿@model JustEat.Models.Food
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+<div>
+    @{var url = HttpContext.Current.Request.Url.AbsoluteUri;}
+    <table align="center">
+
+        <tr>
+            <td colspan="2" align="center"><img src="~/Image/@Model.Image" height="150" width="150" /></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Title)</td>
+            <td>@Html.DisplayFor(model => model.Title)</td>
+        </tr>
+        
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.UnitPrice)</td>
+            <td>@Html.DisplayFor(model => model.UnitPrice)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Details)</td>
+            <td>@Html.DisplayFor(model => model.Details)</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <a href="~/CustomerLogin/Login">Login To Buy</a>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+</div>
+<div id="middlediv" style="left:50px; top:10px"> 
+    @if (Session["rat"] != "0*")
+    {
+        @Session["rat"]
+    }
+    
+    Comments
+    @for (int i = 0; i <= (int)Session["countcomment"]; i++)
+    {
+        @Session["comment" + i.ToString()] <br /><font color="blue">
+            @Session["c" + i.ToString()]
+        </font>
+        <hr>
+    }
+</div>

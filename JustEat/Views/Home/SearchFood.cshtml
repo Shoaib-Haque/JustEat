@@ -1,0 +1,29 @@
+﻿@model List<JustEat.Models.Food>
+
+@{
+    ViewBag.Title = "SearchFood";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+<div id="middle" style="left:40px ; top:200px">
+    @for (var i = 0; i < Model.Count(); i++)
+    {
+        var id = Model[i].Id;
+        var image = Model[i].Image;
+        <div style="display: inline-block">
+            <div>
+                <a href="@Url.Action("Details", "Home", new { id = id })"><img src="../Image/@image" width="150" height="150" /></a>
+            </div>
+            <div>@Model[i].Title</div>
+            <div>Price @Model[i].UnitPrice</div>
+            <div>
+                <a href="~/CustomerLogin/Login">Login To Buy</a>
+            </div>
+        </div>
+        if (i % 8 == 7)
+        {
+            <br />
+        }
+    }
+</div>
+

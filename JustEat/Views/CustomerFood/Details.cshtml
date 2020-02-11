@@ -1,0 +1,69 @@
+﻿@model JustEat.Models.Food
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+<div>
+    @{var url = HttpContext.Current.Request.Url.AbsoluteUri;}
+    <table align="center">
+
+        <tr>
+            <td colspan="2" align="center"><img src="~/Image/@Model.Image" height="150" width="150" /></td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Title)</td>
+            <td>@Html.DisplayFor(model => model.Title)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.UnitPrice)</td>
+            <td>@Html.DisplayFor(model => model.UnitPrice)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Details)</td>
+            <td>@Html.DisplayFor(model => model.Details)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Add To Cart", "../Cart/Increment", new { id = Model.Id, pid = Model.Id, rid = Model.RestaurentId, unitprice = Model.UnitPrice, title = Model.Title, ur = url }, new { @class = "addtocart" })
+            </td>
+        </tr>
+
+    </table>
+
+    <form action="~/Comment/Post" method="post">
+        <input type="hidden" name="pid" value="@Model.Id" />
+        <input type="hidden" name="ur" value="@url" />
+        <table align="center">
+            <tr>
+                <td colspan="2" align="center"></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><textarea placeholder="Write A Comment" name="Comment" cols="80" rows="4"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="submit" id="Submit" value="Post" /></td>
+            </tr>
+        </table>
+    </form> 
+
+
+
+</div>
+<div id="middlediv" style="left:50px; top:10px">
+    @if (Session["rat"] != "0*")
+    {
+        @Session["rat"]
+    }
+
+    Comments
+    @for (int i = 0; i <= (int)Session["countcomment"]; i++)
+    {
+        @Session["comment" + i.ToString()] <br /><font color="blue">
+            @Session["c" + i.ToString()]
+        </font>
+        <hr>
+    }
+</div>

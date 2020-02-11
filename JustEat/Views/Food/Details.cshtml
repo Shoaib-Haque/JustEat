@@ -1,0 +1,62 @@
+﻿@model JustEat.Models.Food
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/RestaurentLayout.cshtml";
+}
+
+<link rel="Stylesheet" href="../CSS/HomeStyle.css" type="text/css" />
+@{var url = HttpContext.Current.Request.Url.AbsoluteUri;}
+
+<div id="middlediv">
+    <div id="middledi" style="top:10px">
+        <table>
+            <tr>
+                <td colspan="2" align="center"><img src="~/Image/@Model.Image" height="150" width="150" /></td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Title)</td>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.UnitPrice)</td>
+                <td>@Html.DisplayFor(model => model.UnitPrice)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Unit)</td>
+                <td>@Html.DisplayFor(model => model.Unit)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Details)</td>
+                <td>@Html.DisplayFor(model => model.Details)</td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = Model.Id })<br /></td>
+                @if(Model.DeliveryFeeId == 1)
+                {
+                    <td>@Html.ActionLink("Offer Free Delivery", "FreeDelivery", new { id = Model.Id })</td>
+                }
+                else if(Model.DeliveryFeeId == 2)
+                {
+                    <td>@Html.ActionLink("Cancel Free Delivery", "CancelFreeDelivery", new { id = Model.Id })</td>
+                }
+                
+            </tr>
+        </table>
+        Comments <hr /> <br />
+        @for (int i = 0; i < (int)Session["countcomment"]; i++)
+        {
+            @Session["comment" + i.ToString()] <br /><font color="blue">
+            @Session["c" + i.ToString()] <br />
+            @if(Session["commentst" + i.ToString()] == null)
+            {
+                @Html.ActionLink("Report This Comment", "Report","Comment", new { id = @Session["commentid" + i.ToString()], ur = url },null)
+            }                                             
+            
+            </font>
+            
+            <hr>
+        }
+    </div>
+</div>

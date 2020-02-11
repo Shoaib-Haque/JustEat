@@ -1,0 +1,43 @@
+﻿@model IEnumerable<JustEat.Models.Cart>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+<table class="table" align="center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+        </tr>
+    }
+</table>

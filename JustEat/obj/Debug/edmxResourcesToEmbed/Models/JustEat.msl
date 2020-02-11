@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JustEatModelStoreContainer" CdmEntityContainer="JustEatEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="JustEatModel.Admin">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="JustEatModel.Area">
+        <MappingFragment StoreEntitySet="Areas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="JustEatModel.Cart">
+        <MappingFragment StoreEntitySet="Carts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="RestaurentId" ColumnName="RestaurentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerNotifications">
+      <EntityTypeMapping TypeName="JustEatModel.CustomerNotification">
+        <MappingFragment StoreEntitySet="CustomerNotifications">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Notice" ColumnName="Notice" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="JustEatModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="DiscountId" ColumnName="DiscountId" />
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeliveryFees">
+      <EntityTypeMapping TypeName="JustEatModel.DeliveryFee">
+        <MappingFragment StoreEntitySet="DeliveryFees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeliveryMans">
+      <EntityTypeMapping TypeName="JustEatModel.DeliveryMan">
+        <MappingFragment StoreEntitySet="DeliveryMans">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discounts">
+      <EntityTypeMapping TypeName="JustEatModel.Discount">
+        <MappingFragment StoreEntitySet="Discounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="JustEatModel.Food">
+        <MappingFragment StoreEntitySet="Foods">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="RestaurentId" ColumnName="RestaurentId" />
+          <ScalarProperty Name="LastPrice" ColumnName="LastPrice" />
+          <ScalarProperty Name="DeliveryFeeId" ColumnName="DeliveryFeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="JustEatModel.Notification">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Notice" ColumnName="Notice" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="JustEatModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="DeliveryFee" ColumnName="DeliveryFee" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PlacedTime" ColumnName="PlacedTime" />
+          <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+          <ScalarProperty Name="DeliveredTime" ColumnName="DeliveredTime" />
+          <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Readed" ColumnName="Readed" />
+          <ScalarProperty Name="RestaurentId" ColumnName="RestaurentId" />
+          <ScalarProperty Name="DeliveryManId" ColumnName="DeliveryManId" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="FinalAmmount" ColumnName="FinalAmmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurents">
+      <EntityTypeMapping TypeName="JustEatModel.Restaurent">
+        <MappingFragment StoreEntitySet="Restaurents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="AddressBook" ColumnName="AddressBook" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="JustEatModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Comment1" ColumnName="Comment" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="JustEatModel.Rating">
+        <MappingFragment StoreEntitySet="Ratings">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="Rating1" ColumnName="Rating" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="JustEatModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="DeliveryManId" ColumnName="DeliveryManId" />
+          <ScalarProperty Name="RestaurentId" ColumnName="RestaurentId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="DeliveryManProfit" ColumnName="DeliveryManProfit" />
+          <ScalarProperty Name="JEProfit" ColumnName="JEProfit" />
+          <ScalarProperty Name="RestaurentProfit" ColumnName="RestaurentProfit" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trendings">
+      <EntityTypeMapping TypeName="JustEatModel.Trending">
+        <MappingFragment StoreEntitySet="Trendings">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="RestaurentId" ColumnName="RestaurentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

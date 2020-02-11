@@ -1,0 +1,36 @@
+﻿@model JustEat.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/DeliveryManLayout.cshtml";
+}
+
+<div id="middlediv">
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlacedTime) @Html.DisplayFor(model => model.PlacedTime)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveredTime) @Html.DisplayFor(model => model.DeliveredTime)
+        </dt>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name) @Html.DisplayFor(model => model.Customer.Name)
+        </dt>
+        <dt>
+            Contact 0 @Session["customercontact"]
+            
+        </dt>
+        <dt>
+            Delivery Address @Session["customeraddressbook"]
+        </dt>
+
+        
+    </dl>
+    
+</div>

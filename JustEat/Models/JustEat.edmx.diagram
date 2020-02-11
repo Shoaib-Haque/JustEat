@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="20ac48a0309f450d9ef65886d25b63ca" Name="Diagram1">
+        <EntityTypeShape EntityType="JustEatModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.Area" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.Cart" Width="1.5" PointX="7.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.CustomerNotification" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.Customer" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.DeliveryFee" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.DeliveryMan" Width="1.5" PointX="8" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.Discount" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.Food" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.Notification" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.Order" Width="1.5" PointX="10.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JustEatModel.Restaurent" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <AssociationConnector Association="JustEatModel.FK_Customers_Areas" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Restaurents_Areas" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Carts_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Carts_Foods" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Carts_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Carts_Restaurent" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_CustomerNotification_CustomerNotification" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_CustomerNotification_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_CustomerNotification_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Customers_Discounts" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Notifications_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Orders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Foods_DeliveryFees" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Orders_DeliveryMans" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Foods_Restaurents" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Notifications_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="JustEatModel.FK_Orders_Restaurents" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="JustEatModel.Comment" Width="1.5" PointX="12.5" PointY="12.625" />
+        <EntityTypeShape EntityType="JustEatModel.Rating" Width="1.5" PointX="10.5" PointY="16.875" />
+        <AssociationConnector Association="JustEatModel.FK_Comments_Customers" />
+        <AssociationConnector Association="JustEatModel.FK_Comments_Foods" />
+        <AssociationConnector Association="JustEatModel.FK_Ratings_Customers" />
+        <AssociationConnector Association="JustEatModel.FK_Ratings_Foods" />
+        <EntityTypeShape EntityType="JustEatModel.Transaction" Width="1.5" PointX="15.5" PointY="12.625" />
+        <AssociationConnector Association="JustEatModel.FK_Transactions_Customers" />
+        <AssociationConnector Association="JustEatModel.FK_Transactions_DeliveryManId" />
+        <AssociationConnector Association="JustEatModel.FK_Transactions_Orders" />
+        <AssociationConnector Association="JustEatModel.FK_Transactions_Restaurents" />
+        <EntityTypeShape EntityType="JustEatModel.Trending" Width="1.5" PointX="7.5" PointY="20.125" />
+        <AssociationConnector Association="JustEatModel.FK_Trendings_Foods" />
+        <AssociationConnector Association="JustEatModel.FK_Trendings_Restaurents" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

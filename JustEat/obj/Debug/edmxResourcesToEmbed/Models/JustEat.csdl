@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JustEatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_Areas" FromRole="Areas" ToRole="Customers" />
+    <NavigationProperty Name="Restaurents" Relationship="Self.FK_Restaurents_Areas" FromRole="Areas" ToRole="Restaurents" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Double" Nullable="false" />
+    <Property Name="TotalPrice" Type="Double" Nullable="false" />
+    <Property Name="FoodId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="OrderId" Type="Int32" />
+    <Property Name="RestaurentId" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Carts_Customer" FromRole="Carts" ToRole="Customers" />
+    <NavigationProperty Name="Food" Relationship="Self.FK_Carts_Foods" FromRole="Carts" ToRole="Foods" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Carts_Orders" FromRole="Carts" ToRole="Orders" />
+    <NavigationProperty Name="Restaurent" Relationship="Self.FK_Carts_Restaurent" FromRole="Carts" ToRole="Restaurents" />
+  </EntityType>
+  <EntityType Name="CustomerNotification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Notice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OrderId" Type="Int32" />
+    <NavigationProperty Name="CustomerNotifications1" Relationship="Self.FK_CustomerNotification_CustomerNotification" FromRole="CustomerNotifications" ToRole="CustomerNotifications1" />
+    <NavigationProperty Name="CustomerNotification1" Relationship="Self.FK_CustomerNotification_CustomerNotification" FromRole="CustomerNotifications1" ToRole="CustomerNotifications" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerNotification_Customers" FromRole="CustomerNotifications" ToRole="Customers" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_CustomerNotification_Orders" FromRole="CustomerNotifications" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contact" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DiscountId" Type="Int32" />
+    <Property Name="AreaId" Type="Int32" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Customers_Areas" FromRole="Customers" ToRole="Areas" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Carts_Customer" FromRole="Customers" ToRole="Carts" />
+    <NavigationProperty Name="CustomerNotifications" Relationship="Self.FK_CustomerNotification_Customers" FromRole="Customers" ToRole="CustomerNotifications" />
+    <NavigationProperty Name="Discount" Relationship="Self.FK_Customers_Discounts" FromRole="Customers" ToRole="Discounts" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_Customers" FromRole="Customers" ToRole="Notifications" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+    <NavigationProperty Name="Comments" Relationship="JustEatModel.FK_Comments_Customers" FromRole="Customer" ToRole="Comment" />
+    <NavigationProperty Name="Ratings" Relationship="JustEatModel.FK_Ratings_Customers" FromRole="Customer" ToRole="Rating" />
+    <NavigationProperty Name="Transactions" Relationship="JustEatModel.FK_Transactions_Customers" FromRole="Customer" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="DeliveryFee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fee" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Foods" Relationship="Self.FK_Foods_DeliveryFees" FromRole="DeliveryFees" ToRole="Foods" />
+  </EntityType>
+  <EntityType Name="DeliveryMan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ContactNo" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_DeliveryMans" FromRole="DeliveryMans" ToRole="Orders" />
+    <NavigationProperty Name="Transactions" Relationship="JustEatModel.FK_Transactions_DeliveryManId" FromRole="DeliveryMan" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Rate" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_Discounts" FromRole="Discounts" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UnitPrice" Type="Double" Nullable="false" />
+    <Property Name="Details" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Unit" Type="Int32" Nullable="false" />
+    <Property Name="RestaurentId" Type="Int32" />
+    <Property Name="LastPrice" Type="Double" />
+    <Property Name="DeliveryFeeId" Type="Int32" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Carts_Foods" FromRole="Foods" ToRole="Carts" />
+    <NavigationProperty Name="DeliveryFee" Relationship="Self.FK_Foods_DeliveryFees" FromRole="Foods" ToRole="DeliveryFees" />
+    <NavigationProperty Name="Restaurent" Relationship="Self.FK_Foods_Restaurents" FromRole="Foods" ToRole="Restaurents" />
+    <NavigationProperty Name="Comments" Relationship="JustEatModel.FK_Comments_Foods" FromRole="Food" ToRole="Comment" />
+    <NavigationProperty Name="Ratings" Relationship="JustEatModel.FK_Ratings_Foods" FromRole="Food" ToRole="Rating" />
+    <NavigationProperty Name="Trendings" Relationship="JustEatModel.FK_Trendings_Foods" FromRole="Food" ToRole="Trending" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Notice" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Notifications_Customers" FromRole="Notifications" ToRole="Customers" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Notifications_Orders" FromRole="Notifications" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlacedTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeliveryTime" Type="DateTime" Precision="3" />
+    <Property Name="DeliveredTime" Type="DateTime" Precision="3" />
+    <Property Name="Ammount" Type="Double" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Readed" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="RestaurentId" Type="Int32" />
+    <Property Name="DeliveryManId" Type="Int32" />
+    <Property Name="Discount" Type="Double" />
+    <Property Name="FinalAmmount" Type="Double" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Carts_Orders" FromRole="Orders" ToRole="Carts" />
+    <NavigationProperty Name="CustomerNotifications" Relationship="Self.FK_CustomerNotification_Orders" FromRole="Orders" ToRole="CustomerNotifications" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="Orders" ToRole="Customers" />
+    <NavigationProperty Name="DeliveryMan" Relationship="Self.FK_Orders_DeliveryMans" FromRole="Orders" ToRole="DeliveryMans" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_Orders" FromRole="Orders" ToRole="Notifications" />
+    <NavigationProperty Name="Restaurent" Relationship="Self.FK_Orders_Restaurents" FromRole="Orders" ToRole="Restaurents" />
+    <Property Name="DeliveryFee" Type="Int32" />
+    <NavigationProperty Name="Transactions" Relationship="JustEatModel.FK_Transactions_Orders" FromRole="Order" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="Restaurent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AreaId" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="Int32" />
+    <Property Name="AddressBook" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Restaurents_Areas" FromRole="Restaurents" ToRole="Areas" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Carts_Restaurent" FromRole="Restaurents" ToRole="Carts" />
+    <NavigationProperty Name="Foods" Relationship="Self.FK_Foods_Restaurents" FromRole="Restaurents" ToRole="Foods" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Restaurents" FromRole="Restaurents" ToRole="Orders" />
+    <NavigationProperty Name="Transactions" Relationship="JustEatModel.FK_Transactions_Restaurents" FromRole="Restaurent" ToRole="Transaction" />
+    <NavigationProperty Name="Trendings" Relationship="JustEatModel.FK_Trendings_Restaurents" FromRole="Restaurent" ToRole="Trending" />
+  </EntityType>
+  <Association Name="FK_Customers_Areas">
+    <End Role="Areas" Type="Self.Area" Multiplicity="0..1" />
+    <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Areas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Restaurents_Areas">
+    <End Role="Areas" Type="Self.Area" Multiplicity="0..1" />
+    <End Role="Restaurents" Type="Self.Restaurent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Areas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Restaurents">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carts_Customer">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Carts">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carts_Foods">
+    <End Role="Foods" Type="Self.Food" Multiplicity="1" />
+    <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Foods">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Carts">
+        <PropertyRef Name="FoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carts_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Carts">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carts_Restaurent">
+    <End Role="Restaurents" Type="Self.Restaurent" Multiplicity="0..1" />
+    <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurents">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Carts">
+        <PropertyRef Name="RestaurentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerNotification_CustomerNotification">
+    <End Role="CustomerNotifications" Type="Self.CustomerNotification" Multiplicity="1" />
+    <End Role="CustomerNotifications1" Type="Self.CustomerNotification" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerNotifications">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerNotifications1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerNotification_Customers">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerNotifications" Type="Self.CustomerNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerNotifications">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerNotification_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="CustomerNotifications" Type="Self.CustomerNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerNotifications">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_Discounts">
+    <End Role="Discounts" Type="Self.Discount" Multiplicity="0..1" />
+    <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="DiscountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_Customers">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Customers">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Foods_DeliveryFees">
+    <End Role="DeliveryFees" Type="Self.DeliveryFee" Multiplicity="0..1" />
+    <End Role="Foods" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryFees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Foods">
+        <PropertyRef Name="DeliveryFeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_DeliveryMans">
+    <End Role="DeliveryMans" Type="Self.DeliveryMan" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryMans">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="DeliveryManId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Foods_Restaurents">
+    <End Role="Restaurents" Type="Self.Restaurent" Multiplicity="0..1" />
+    <End Role="Foods" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurents">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Foods">
+        <PropertyRef Name="RestaurentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Restaurents">
+    <End Role="Restaurents" Type="Self.Restaurent" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurents">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="RestaurentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JustEatEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Areas" EntityType="Self.Area" />
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="CustomerNotifications" EntityType="Self.CustomerNotification" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="DeliveryFees" EntityType="Self.DeliveryFee" />
+    <EntitySet Name="DeliveryMans" EntityType="Self.DeliveryMan" />
+    <EntitySet Name="Discounts" EntityType="Self.Discount" />
+    <EntitySet Name="Foods" EntityType="Self.Food" />
+    <EntitySet Name="Notifications" EntityType="Self.Notification" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Restaurents" EntityType="Self.Restaurent" />
+    <AssociationSet Name="FK_Customers_Areas" Association="Self.FK_Customers_Areas">
+      <End Role="Areas" EntitySet="Areas" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Restaurents_Areas" Association="Self.FK_Restaurents_Areas">
+      <End Role="Areas" EntitySet="Areas" />
+      <End Role="Restaurents" EntitySet="Restaurents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carts_Customer" Association="Self.FK_Carts_Customer">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Carts" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carts_Foods" Association="Self.FK_Carts_Foods">
+      <End Role="Foods" EntitySet="Foods" />
+      <End Role="Carts" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carts_Orders" Association="Self.FK_Carts_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Carts" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carts_Restaurent" Association="Self.FK_Carts_Restaurent">
+      <End Role="Restaurents" EntitySet="Restaurents" />
+      <End Role="Carts" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerNotification_CustomerNotification" Association="Self.FK_CustomerNotification_CustomerNotification">
+      <End Role="CustomerNotifications" EntitySet="CustomerNotifications" />
+      <End Role="CustomerNotifications1" EntitySet="CustomerNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerNotification_Customers" Association="Self.FK_CustomerNotification_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CustomerNotifications" EntitySet="CustomerNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerNotification_Orders" Association="Self.FK_CustomerNotification_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="CustomerNotifications" EntitySet="CustomerNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_Discounts" Association="Self.FK_Customers_Discounts">
+      <End Role="Discounts" EntitySet="Discounts" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_Customers" Association="Self.FK_Notifications_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Foods_DeliveryFees" Association="Self.FK_Foods_DeliveryFees">
+      <End Role="DeliveryFees" EntitySet="DeliveryFees" />
+      <End Role="Foods" EntitySet="Foods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_DeliveryMans" Association="Self.FK_Orders_DeliveryMans">
+      <End Role="DeliveryMans" EntitySet="DeliveryMans" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Foods_Restaurents" Association="Self.FK_Foods_Restaurents">
+      <End Role="Restaurents" EntitySet="Restaurents" />
+      <End Role="Foods" EntitySet="Foods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_Orders" Association="Self.FK_Notifications_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Restaurents" Association="Self.FK_Orders_Restaurents">
+      <End Role="Restaurents" EntitySet="Restaurents" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <EntitySet Name="Comments" EntityType="JustEatModel.Comment" />
+    <EntitySet Name="Ratings" EntityType="JustEatModel.Rating" />
+    <AssociationSet Name="FK_Comments_Customers" Association="JustEatModel.FK_Comments_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_Foods" Association="JustEatModel.FK_Comments_Foods">
+      <End Role="Food" EntitySet="Foods" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ratings_Customers" Association="JustEatModel.FK_Ratings_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ratings_Foods" Association="JustEatModel.FK_Ratings_Foods">
+      <End Role="Food" EntitySet="Foods" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <EntitySet Name="Transactions" EntityType="JustEatModel.Transaction" />
+    <AssociationSet Name="FK_Transactions_Customers" Association="JustEatModel.FK_Transactions_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_DeliveryManId" Association="JustEatModel.FK_Transactions_DeliveryManId">
+      <End Role="DeliveryMan" EntitySet="DeliveryMans" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Orders" Association="JustEatModel.FK_Transactions_Orders">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Restaurents" Association="JustEatModel.FK_Transactions_Restaurents">
+      <End Role="Restaurent" EntitySet="Restaurents" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Trendings" EntityType="JustEatModel.Trending" />
+    <AssociationSet Name="FK_Trendings_Foods" Association="JustEatModel.FK_Trendings_Foods">
+      <End Role="Food" EntitySet="Foods" />
+      <End Role="Trending" EntitySet="Trendings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trendings_Restaurents" Association="JustEatModel.FK_Trendings_Restaurents">
+      <End Role="Restaurent" EntitySet="Restaurents" />
+      <End Role="Trending" EntitySet="Trendings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment1" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FoodId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="JustEatModel.FK_Comments_Customers" FromRole="Comment" ToRole="Customer" />
+    <NavigationProperty Name="Food" Relationship="JustEatModel.FK_Comments_Foods" FromRole="Comment" ToRole="Food" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rating1" Type="Int32" Nullable="false" />
+    <Property Name="FoodId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="JustEatModel.FK_Ratings_Customers" FromRole="Rating" ToRole="Customer" />
+    <NavigationProperty Name="Food" Relationship="JustEatModel.FK_Ratings_Foods" FromRole="Rating" ToRole="Food" />
+  </EntityType>
+  <Association Name="FK_Comments_Customers">
+    <End Type="JustEatModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="JustEatModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_Foods">
+    <End Type="JustEatModel.Food" Role="Food" Multiplicity="1" />
+    <End Type="JustEatModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="FoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ratings_Customers">
+    <End Type="JustEatModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="JustEatModel.Rating" Role="Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ratings_Foods">
+    <End Type="JustEatModel.Food" Role="Food" Multiplicity="1" />
+    <End Type="JustEatModel.Rating" Role="Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="FoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="RestaurentProfit" Type="Int32" Nullable="false" />
+    <Property Name="JEProfit" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryManProfit" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="RestaurentId" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryManId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="JustEatModel.FK_Transactions_Customers" FromRole="Transaction" ToRole="Customer" />
+    <NavigationProperty Name="DeliveryMan" Relationship="JustEatModel.FK_Transactions_DeliveryManId" FromRole="Transaction" ToRole="DeliveryMan" />
+    <NavigationProperty Name="Order" Relationship="JustEatModel.FK_Transactions_Orders" FromRole="Transaction" ToRole="Order" />
+    <NavigationProperty Name="Restaurent" Relationship="JustEatModel.FK_Transactions_Restaurents" FromRole="Transaction" ToRole="Restaurent" />
+  </EntityType>
+  <Association Name="FK_Transactions_Customers">
+    <End Type="JustEatModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="JustEatModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_DeliveryManId">
+    <End Type="JustEatModel.DeliveryMan" Role="DeliveryMan" Multiplicity="1" />
+    <End Type="JustEatModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryMan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="DeliveryManId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Orders">
+    <End Type="JustEatModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="JustEatModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Restaurents">
+    <End Type="JustEatModel.Restaurent" Role="Restaurent" Multiplicity="1" />
+    <End Type="JustEatModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="RestaurentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Trending">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RestaurentId" Type="Int32" Nullable="false" />
+    <Property Name="FoodId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Food" Relationship="JustEatModel.FK_Trendings_Foods" FromRole="Trending" ToRole="Food" />
+    <NavigationProperty Name="Restaurent" Relationship="JustEatModel.FK_Trendings_Restaurents" FromRole="Trending" ToRole="Restaurent" />
+  </EntityType>
+  <Association Name="FK_Trendings_Foods">
+    <End Type="JustEatModel.Food" Role="Food" Multiplicity="1" />
+    <End Type="JustEatModel.Trending" Role="Trending" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Trending">
+        <PropertyRef Name="FoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trendings_Restaurents">
+    <End Type="JustEatModel.Restaurent" Role="Restaurent" Multiplicity="1" />
+    <End Type="JustEatModel.Trending" Role="Trending" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Trending">
+        <PropertyRef Name="RestaurentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

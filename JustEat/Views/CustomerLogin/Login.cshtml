@@ -1,0 +1,36 @@
+﻿@model JustEat.Models.Customer
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+<div>
+
+    <form action="/CustomerLogin/Login" method="post">
+        <table align="center">
+            <tr>
+                <td colspan="2" align="center"><h1>Login Here</h1></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">@ViewData["invalidlogin"]</td>
+            </tr>
+            <tr>
+                <td>Phone or Email</td>
+                <td><input type="text" name="CustomerInput" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="Password" id="Password" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="Submit" value="Login" id="Login" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">New? <a href="~/Customer/Registration">SignUp Here</a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+

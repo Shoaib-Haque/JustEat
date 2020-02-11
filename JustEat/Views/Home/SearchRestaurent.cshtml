@@ -1,0 +1,26 @@
+﻿@model List<JustEat.Models.Restaurent>
+
+@{
+    ViewBag.Title = "SearchRestaurent";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+        @for (var i = 0; i < Model.Count(); i++)
+        {
+            var id = Model[i].Id;
+            var image = Model[i].Image;
+            <div style="display: inline-block">
+                <div>
+                    <a href="@Url.Action("FoodByRestaurent", "Home", new { id = Model[i].Id }) "><img src="../Image/@image" width="200" height="150" /></a>
+                </div>
+                <div>
+                    @Model[i].Name
+                </div>
+
+            </div>
+
+                    if (i % 5 == 4)
+                    {
+                        <br />
+                    }
+        }

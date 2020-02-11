@@ -1,0 +1,43 @@
+﻿@model JustEat.Models.DeliveryMan
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+<div id="middlediv" style="top:10px">
+    <form action="/DeliveryMan/Create" method="post" enctype="multipart/form-data">
+        <table align="center">
+            <tr>
+                <td colspan="2" align="center">Register As A Rider</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="Name" />@Html.ValidationMessageFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td><input type="file" name="Image" />@Html.ValidationMessageFor(model => model.Image)</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea cols="80" rows="5" name="Address"></textarea>@Html.ValidationMessageFor(model => model.Address)</td>
+            </tr>
+            <tr>
+                <td>Contact No</td>
+                <td><input type="number" name="ContactNo" />@Html.ValidationMessageFor(model => model.ContactNo)</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="Email" />@Html.ValidationMessageFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="Password" />@Html.ValidationMessageFor(model => model.Password)</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Register" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+    

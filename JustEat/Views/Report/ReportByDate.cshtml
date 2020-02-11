@@ -1,0 +1,52 @@
+﻿@model IEnumerable<JustEat.Models.Transaction>
+
+@{
+    ViewBag.Title = "ReportByDate";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div id="middlediv">
+    <table class="table" border="1">
+        <tr>
+            <td>Total @TempData["totalprofitdate"]</td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JEProfit)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JEProfit)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+</div>
+

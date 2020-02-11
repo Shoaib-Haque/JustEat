@@ -1,0 +1,35 @@
+﻿@model JustEat.Models.Food
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/RestaurentLayout.cshtml";
+}
+
+<div id="middlediv" style="top:10px">
+    <h2>Publish New Ad</h2>
+    <form action="~/Food/Create" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="Title" id="Title" />@Html.ValidationMessageFor(model => model.Title)</td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td><input type="file" name="Image" id="Image" />@Html.ValidationMessageFor(model => model.Image)</td>
+            </tr>
+            
+            <tr>
+                <td>Unit Price</td>
+                <td><input type="number" name="UnitPrice" id="UnitPrice" />@Html.ValidationMessageFor(model => model.UnitPrice)</td>
+            </tr>
+            
+            <tr>
+                <td>Details</td>
+                <td><textarea name="Details" id="Details" cols="100" rows="10"></textarea>@Html.ValidationMessageFor(model => model.Details)</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Publish Prodcut" name="Publish" id="Publish" /></td>
+            </tr>
+        </table>
+    </form>
+</div>

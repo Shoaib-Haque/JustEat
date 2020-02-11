@@ -1,0 +1,124 @@
+﻿#upperdiv{
+    background-color:green;
+    width: 960px; 
+    padding: 0px 0px 10px 0px;
+    margin:20px auto;
+}
+
+img
+{
+   width:200px;
+   height:100px;
+}
+	
+#uppertable {
+height:45px;
+}
+#uppertabletr{
+    background-color:#f4c741;
+    height:15%;
+} 
+
+#uppertabletd{
+    width:1200px;
+}
+
+#middlediv{
+    float: left; 
+    margin-left:232px;
+    left: 250px;
+}
+
+#middle{
+            
+             position: absolute;
+              left: 100px;
+              top: 0px;
+        }
+
+#leftdiv{
+    width: 240px;  
+    margin-top:0px; 
+    float: left;
+}
+
+a{
+  text-decoration: none;
+}
+
+.button{
+
+  text-decoration: none;
+
+}
+
+.ui-autocomplete {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            float: left;
+            display: none;
+            min-width: 272px !important;
+            padding: 0px 10px;
+            margin: 0 0 10px 25px;
+            list-style: none;
+            background-color: #f5f8f9;
+            font-family: 'Ubuntu', sans-serif;
+            text-transform: initial !important;
+            font-size: 14px;
+        }
+
+        .ui-menu-item {
+            border-bottom: 1px solid #b4c4d4 !important;
+            padding-bottom: 10px !important;
+            padding-top: 10px !important;
+        }
+
+            .ui-menu-item > a.ui-corner-all {
+                display: block;
+                clear: both;
+                font-weight: normal;
+                line-height: 25px;
+                color: #0a0a0a;
+                white-space: nowrap;
+                text-decoration: none;
+                text-transform: lowercase !important;
+            }
+
+                .ui-menu-item > a.ui-corner-all:first-letter {
+                    text-transform: uppercase;
+                }
+
+        .ui-state-hover, .ui-state-active {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #0088cc;
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            border-radius: 0px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            background-image: none;
+        }
+
+        .ui-state-highlight a {
+            font-weight: bold;
+            color: #002e5b !important;
+        }
+
+        .ui-state-highlight {
+            font-weight: bold;
+            color: #002e5b !important;
+        }
+        .ui-helper-hidden-accessible {
+            border: 0;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+

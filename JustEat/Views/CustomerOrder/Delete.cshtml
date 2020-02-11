@@ -1,0 +1,20 @@
+﻿@model JustEat.Models.Order
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <table align="center">
+            <tr>
+                <td><font color="red"> Are You Sure You Want To Cancel Order?</font></td>
+            </tr>
+            <tr>
+                <td align="center"><input type="submit" value="Cancel" class="btn btn-default" /> </td>
+            </tr>
+        </table>
+    }

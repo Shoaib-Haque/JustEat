@@ -1,0 +1,34 @@
+﻿@model JustEat.Models.DeliveryMan
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+<div>
+    <form action="~/DeliveryManLogin/Login" method="post">
+        <table align="center">
+            <tr>
+                <td colspan="2" align="center"><h1>Login Here</h1></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">@ViewData["invalidlogin"]</td>
+            </tr>
+            <tr>
+                <td>Phone or Email</td>
+                <td><input type="text" name="DeliveryManInput" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="Password" id="Password" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="Submit" value="Login" id="Login" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">Be Our Rider..!<a href="~/DeliveryMan/Create">Register Here</a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+

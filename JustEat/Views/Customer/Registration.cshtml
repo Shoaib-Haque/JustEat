@@ -1,0 +1,64 @@
+﻿@model JustEat.Models.Customer
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+<div>
+    <form action="/Customer/Registration" method="post">
+        <table align="center">
+            <tr>
+                <td colspan="2" align="center"><h1>SignUp Here</h1></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">@ViewData["invalidregmsg"]</td>
+            </tr>
+            <tr>
+                <td>Full Name</td>
+                <td><input type="text" name="Name" id="Name" onblur="validation()" />@Html.ValidationMessageFor(model => model.Name)<font color="red"><label id="firstnameLabel"></label></font></td>
+            </tr>
+            <tr>
+
+                <td>Contact</td>
+                <td><input type="text" name="Contact" id="Phone" onblur="validation()" /><font color="red"><label id="phoneLabel"></label></font></td>
+            </tr>
+            <tr>
+
+                <td>Email</td>
+                <td><input type="email" name="Email" id="Email" onblur="validation()" /><font color="red"><label id="emailLabel"></label></font> @Html.ValidationMessageFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td>
+                    <select name="Areaid">
+                        @for (int i = 0; i <= (int)Session["countarea"]; i++)
+                        {
+                            <option value="@Session["id"+i.ToString()]">@Session["areaname" + i.ToString()]</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AreaId)
+                </td>
+            </tr>
+            <tr>
+                <td>Address Book</td>
+                <td><textarea name="Address" id="AddressBook" onblur="validation()"></textarea><font color="red"><label id="addressLabel"></label></font> @Html.ValidationMessageFor(model => model.Address)</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="Password" id="Password" onblur="validation()" /><font color="red"><label id="passwordLabel"></label></font> @Html.ValidationMessageFor(model => model.Password)</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="Submit" id="Submit" value="Register" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">Have An Account? <a href="~/CustomerLogin/Login">Login Here</a></td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+
+
+
+

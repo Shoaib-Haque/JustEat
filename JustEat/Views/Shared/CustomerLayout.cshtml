@@ -1,0 +1,208 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        .text {
+            border: 0;
+            
+        }
+
+        #navBar {
+            background-color: #232F3E;
+            height: 100px;
+            color: white;
+        }
+
+
+        #comment {
+            position: relative;
+            left: 150px;
+            top: 10px;
+        }
+
+        #middle {
+            position: relative;
+            left: 150px;
+            top: 0px;
+        }
+
+        .inputsearch {
+            margin-top: 20px;
+            margin-left: 20px;
+            height: 20px;
+            width: 500px;
+        }
+
+        #department {
+            font-size: 25px;
+            padding: 10px;
+            margin-left: 30px;
+            font-weight: bold;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 10px;
+        }
+
+        #nava {
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+            display: inline-block;
+            padding: 10px;
+        }
+
+        .button {
+            border: none;
+            padding: 4px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .dropbtn {
+            background-color: #232F3E;
+            color: white;
+            font-size: 25px;
+            border: none;
+        }
+
+        .profile {
+            font-size: 15px;
+            padding: 10px;
+            margin-top: 5px;
+            margin-left: 30px;
+            font-weight: bold;
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown {
+            font-size: 20px;
+            padding: 10px;
+            margin-top: 5px;
+            margin-left: 30px;
+            font-weight: bold;
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: white;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #232F3E;
+        }
+
+        .profile-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .profile-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+        .dropdown-content a:hover {
+            background-color: white;
+        }
+
+        .profile:hover .dropdown-content {
+            display: block;
+        }
+
+        .profile:hover .dropbtn {
+            background-color: #232F3E;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    @{
+        AjaxOptions options = new AjaxOptions
+        {
+            UpdateTargetId = "searchResult",
+            Confirm = "Are you sure to start search?",
+            InsertionMode = InsertionMode.Replace,
+            LoadingElementId = "divLoading"
+        };
+    }
+    <link rel="Stylesheet" href="~/CSS/HomeStyle.css" type="text/css" />
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/Cart.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#productName').autocomplete({
+                source: '@Url.Action("SearchAuto", "CustomerFood")'
+            });
+        });
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm("Searching", "CustomerFood", options))
+    {
+        <div id="navBar">
+            <input type="text" name="searchName" id="productName" class="inputsearch" placeholder="Search Food or Restaurant in your area"><button type="submit" id="Hi" class="button">Search</button>
+            
+
+            <a id="nava" href="~/CustomerFood/Index">Home</a> |
+            <div class="profile">
+                <button class="dropbtn">@Session["customername"]</button>
+                <div class="dropdown-content">
+                    <a href="~/CustomerDiscount/Add">Add Promotion</a>
+                    <a href="~/CustomerDiscount/Index">Your Promotion</a>
+                    <a href="~/CustomerUpdate/AreaUpdate">Area Update</a>
+                    <a href="~/CustomerUpdate/AddressUpdate">Addess Update</a>
+                    <a href="~/Logout/Index">Logout</a>
+                </div>
+            </div>
+            |<a id="nava" href="~/Cart/Index">Cart</a> |
+            <a id="nava" href="~/CustomerOrder/Index">Order</a> |
+            <a id="nava" href="~/CustomerNotification/Index">Notification</a>
+        </div>
+    }
+    @RenderBody()
+</body>
+</html>

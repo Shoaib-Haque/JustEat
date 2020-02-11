@@ -1,0 +1,26 @@
+﻿@model JustEat.Models.Customer
+
+@{
+    ViewBag.Title = "AddressUpdate";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+<div id="middlediv">
+    <form action="~/CustomerUpdate/AddressUpdate" method="post">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <table>
+            <tr>
+                <td colspan="2" align="center">Update area</td>
+            </tr>
+            <tr>
+                <td>Address Book</td>
+                <td><textarea name="Address" id="AddressBook" onblur="validation()"></textarea><font color="red"><label id="addressLabel"></label></font> @Html.ValidationMessageFor(model => model.Address)</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="2"><input type="submit" value="Save" /></td>
+            </tr>
+
+        </table>
+    </form>
+
+</div>

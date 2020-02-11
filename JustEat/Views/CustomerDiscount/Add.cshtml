@@ -1,0 +1,26 @@
+﻿@model JustEat.Models.Discount
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+}
+
+@{var url = HttpContext.Current.Request.Url.AbsoluteUri;}
+<form action="~/CustomerDiscount/Add" method="post">
+    <input type="hidden" value="@url" name="ur" />
+    <table align="center">
+        <tr>
+            <td colspan="2" align="center"><h2>Add Promotion</h2></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">@ViewData["nodiscount"]</td>
+        </tr>
+        <tr>
+            <td>Write A Valid Code For Promotion</td>
+            <td><input type="text" name="Code" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" name="submit" /></td>
+        </tr>
+    </table>
+</form>
